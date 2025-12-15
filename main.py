@@ -4,13 +4,13 @@ from check import check_bmp_file
 
 def main():
     while True:
-        print("\n=== BMP Steganography ===")
+        print("\n=== Steganography ===")
         print("1. Hide message (encode)")
         print("2. Find message (decode)")
         print("3. Check BMP file")
         print("4. Exit")
-
-        choice = input("Choose 1-4: ").strip()
+        
+        choice = input("Choose 1-4: ")
         if choice == "1":
             hide_message()
         elif choice == "2":
@@ -18,7 +18,7 @@ def main():
         elif choice == "3":
             check_bmp_file()
         elif choice == "4":
-            print("Goodbye!")
+            print("Closing!")
             break
         else:
             print("Invalid choice.")
