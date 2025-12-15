@@ -1,10 +1,10 @@
 def hide_message():
     print("\n--- Hide Message (Encode) ---")
-    bmp_file = input("Enter BMP filename: ").strip()
-    output_file = input("Enter output filename: ").strip()
-    message = input("Enter secret message: ").strip()
+    bmp_file = input("Enter BMP filename: ")
+    output_file = input("Enter output filename: ")
+    message = input("Enter secret message: ")
 
-    if not message:
+    if len(message) == 0:
         print("Error: Message cannot be empty.")
         return
 
@@ -27,13 +27,13 @@ def hide_message():
         for i in range(8):
             bits.append((val >> i) & 1)
 
-    start = 54
-    if start + len(bits) > len(data):
+    bmp_header = 54
+    if bmp_header + len(bits) > len(data):
         print("Error: Image too small for this message.")
         return
 
     for i, bit in enumerate(bits):
-        data[start + i] = (data[start + i] & 0xFE) | bit
+        data[bmp_header + i] = (data[bmp_header + i] & 254) | bit
 
     with open(output_file, 'wb') as f:
         f.write(data)
