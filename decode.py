@@ -1,6 +1,6 @@
 def find_message():
     print("\n--- Find Hidden Message (Decode) ---")
-    bmp_file = input("Enter BMP filename: ").strip()
+    bmp_file = input("Enter BMP filename: ")
 
     try:
         with open(bmp_file, 'rb') as f:
@@ -13,12 +13,12 @@ def find_message():
         print("Error: Not a valid BMP file.")
         return
 
-    start = 54
+    bmp_header = 54
     message = ""
     bits_collected = 0
     current_char = 0
 
-    for i in range(start, len(data)):
+    for i in range(bmp_header, len(data)):
         current_char |= (data[i] & 1) << bits_collected
         bits_collected += 1
 
